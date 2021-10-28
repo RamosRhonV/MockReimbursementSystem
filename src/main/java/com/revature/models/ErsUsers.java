@@ -19,13 +19,13 @@ public class ErsUsers
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int ers_users_id;
 	private String ers_username;
-	private String ers_password;
+	private int ers_password;
 	private String user_first_name;
 	private String user_last_name;
 	private String user_email;
 	private int user_role_id;
 	
-	public ErsUsers(int id, String name, String password, String firstName, String lastName, String email, int roleId)
+	public ErsUsers(int id, String name, int password, String firstName, String lastName, String email, int roleId)
 	{
 		this.ers_users_id = id;
 		this.ers_username = name;
@@ -36,6 +36,11 @@ public class ErsUsers
 		this.user_role_id = roleId;
 	}
 	
+	public ErsUsers() 
+	{
+		super();
+	}
+
 	// getter methods
 	public int getId()
 	{
@@ -47,7 +52,7 @@ public class ErsUsers
 		return ers_username;
 	}
 	
-	public String getPassword()
+	public int getPassword()
 	{
 		return ers_password;
 	}
@@ -83,7 +88,7 @@ public class ErsUsers
 		this.ers_username = username;
 	}
 	
-	public void setPassword(String password)
+	public void setPassword(int password)
 	{
 		this.ers_password = password;
 	}

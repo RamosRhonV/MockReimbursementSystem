@@ -17,6 +17,11 @@ public class ErsReimStatus
 		this.reimb_status = status;
 	}
 	
+	public ErsReimStatus()
+	{
+		
+	}
+	
 	// getter methods
 	public int getStatusId()
 	{

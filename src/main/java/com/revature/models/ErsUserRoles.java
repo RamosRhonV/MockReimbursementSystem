@@ -17,6 +17,11 @@ public class ErsUserRoles
 		this.user_role = userRole;
 	}
 	
+	public ErsUserRoles()
+	{
+		super();
+	}
+	
 	// getter methods
 	public int getUserRoleId()
 	{

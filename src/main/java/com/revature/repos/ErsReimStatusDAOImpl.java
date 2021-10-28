@@ -9,7 +9,7 @@ import org.hibernate.Transaction;
 import com.revature.models.ErsReimStatus;
 import com.revature.utils.HibernateUtil;
 
-public class ErsReimStatusDAOImpl 
+public class ErsReimStatusDAOImpl implements ErsReimStatusDAO
 {
 	public List<ErsReimStatus> findAllReimStatus() 
 	{

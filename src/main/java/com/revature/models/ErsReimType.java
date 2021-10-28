@@ -17,6 +17,11 @@ public class ErsReimType
 		this.reimb_type = type;
 	}
 	
+	public ErsReimType()
+	{
+		super();
+	}
+	
 	// getter methods
 	public int getTypeId()
 	{

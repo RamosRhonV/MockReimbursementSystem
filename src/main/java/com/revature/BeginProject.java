@@ -2,7 +2,10 @@ package com.revature;
 
 import com.revature.controllers.Controller;
 import com.revature.controllers.ErsReimController;
+import com.revature.controllers.ErsReimStatusController;
+import com.revature.controllers.ErsReimTypeController;
 import com.revature.controllers.ErsUserController;
+import com.revature.controllers.ErsUserRolesController;
 
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
@@ -19,7 +22,7 @@ public class BeginProject
 			}
 		);
 		
-		configure(new ErsUserController(), new ErsReimController());
+		configure(new ErsUserController(), new ErsReimController(), new ErsReimTypeController(), new ErsReimStatusController(), new ErsUserRolesController());
 		
 		app.start(8081);
 	}

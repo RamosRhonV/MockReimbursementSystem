@@ -29,17 +29,17 @@ public class ErsUserRolesService
 		}
 	}
 	
-	public boolean addErsUser(ErsUserRoles ersUserRole)
+	public boolean addRole(ErsUserRoles ersUserRole)
 	{
 		return ersUserRolesDAO.addRole(ersUserRole);
 	}
 	
-	public boolean updateErsUser(ErsUserRoles ersUserRole)
+	public boolean updateRole(ErsUserRoles ersUserRole)
 	{
 		return ersUserRolesDAO.updateRole(ersUserRole);
 	}
 	
-	public boolean deleteErsUser(ErsUserRoles ersUserRole)
+	public boolean deleteRole(ErsUserRoles ersUserRole)
 	{
 		return ersUserRolesDAO.deleteRole(ersUserRole);
 	}

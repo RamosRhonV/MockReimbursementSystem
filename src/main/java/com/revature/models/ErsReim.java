@@ -3,10 +3,12 @@ package com.revature.models;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class ErsReim 
 {
 	@Id

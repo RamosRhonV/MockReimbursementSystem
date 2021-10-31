@@ -2,7 +2,6 @@ package com.revature.controllers;
 
 import java.util.List;
 
-import com.revature.models.ErsReimStatus;
 import com.revature.models.ErsUserRoles;
 import com.revature.services.ErsUserRolesService;
 
@@ -17,7 +16,9 @@ public class ErsUserRolesController implements Controller
 	{
 		if(ctx.req.getSession(false) != null)
 		{
-			List<ErsUserRoles> ersUserRoles = ersUserRolesService.getAllUsers();
+			List<ErsUserRoles> rolesList = ersUserRolesService.getAllUsers();
+
+			ctx.json(rolesList);
 			ctx.status(200);
 		}
 		else

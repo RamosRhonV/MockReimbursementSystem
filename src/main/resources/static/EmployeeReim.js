@@ -1,137 +1,103 @@
 const URL = "http://localhost:8081/";
 
-let buttonRow = document.getElementById("buttonRow");
-let avengerButton = document.createElement("button");
-let homeButton = document.createElement("button");
-let addHomeButton = document.getElementById('addHomeButton');
-let loginButton = document.getElementById('loginButton');
+let loginButton = document.getElementById("loginButton");
+loginButton.onclick = loginToErs;
 
-avengerButton.onclick = getAvengers;
-homeButton.onclick = getHomes;
-addHomeButton.onclick = addHome;
-loginButton.onclick = loginToApp; 
-
-avengerButton.innerText = "Avengers Assemble";
-homeButton.innerText = "See Homes";
-
-async function loginToApp(){
-  let user = {
-    username:document.getElementById("username").value,
+async function loginToErs()
+{
+  let ersUser = 
+  {
+    username:document.getElementById("ID").value,
     password:document.getElementById("password").value
   }
 
-  let response = await fetch(URL+"login", {
-    method:"POST",
-    body:JSON.stringify(user),
-    credentials:"include" //This will save the cookie when we receive it. 
+  let ersResponse = await fetch(URL + "login", 
+  {
+    method: "POST",
+    body:JSON.stringify(ersUser),
+    credentials: "include"
   });
 
-  if(response.status===200){
-    document.getElementsByClassName("formClass")[0].innerHTML = '';
-    buttonRow.appendChild(avengerButton);
-    buttonRow.appendChild(homeButton);
+  if(ersResponse.status === 200)
+  {
+    document.getElementById("show-reim")[0].innerHTML = '';
+    
   }
-  else{
-    let para = document.createElement("p");
-    para.setAttribute("style", "color:red")
-    para.innerText = "LOGIN FAILED"
-    document.getElementsByClassName("formClass")[0].appendChild(para);
-  }
-}
-
-async function getAvengers(){
-  let response = await fetch(URL+"avengers", {credentials:"include"});
-
-  if(response.status === 200){
-    let data = await response.json();
-    populateAvengersTable(data);
-  }else{
-    console.log("The Avengers are too busy saving the planet to respond.");
+  else
+  {
+    let ersFail = document.createElement("p");
+    ersFail.setAttribute("style","color:red")
+    ersFail.innerText = "User doesn't exist"
+    document.getElementById("show-reim")[0].appendChild(ersFail);
   }
 }
 
-function populateAvengersTable(data){
-  let tbody = document.getElementById("avengerBody");
+async function getErsUser()
+{
+  let response = await fetch(URL + "ersusers", {credentials: "include"});
 
-  tbody.innerHTML="";
+  if(response.status === 200)
+  {
+    let users = await response.json();
+    makeErsUsers(user);
+  }
+  else
+  {
+    console.log("No users to show.");
+  }
+}
 
-  for(let avenger of data){
-    let row = document.createElement("tr");
+function makeErsUsers(users)
+{
+  let userTable = document.getElementById("show-users");
+  userTable.innerHTML = "";
 
-    for(let cell in avenger){
+  for(let user of users)
+  {
+    let userRow = document.createElement("tr");
+    for(let cell in user)
+    {
       let td = document.createElement("td");
-      if(cell!="home"){
-        td.innerText=avenger[cell];
-      }else if(avenger[cell]){
-        td.innerText = `${avenger[cell].name}: ${avenger[cell].streetNumber} ${avenger[cell].streetName} ${avenger[cell].city } ${avenger[cell].region}, ${avenger[cell].zip} ${avenger[cell].country}`
-      }
-      row.appendChild(td);
+      td.innerText = `${reim[cell].reimb_id}: ${reim[cell].reimb_amount}, ${reim[cell].reimb_submitted}, ${reim[cell].reimb_resolved},
+                        ${reim[cell].reimb_description}, ${reim[cell].reimb_receipt}, ${reim[cell].reimb_author},
+                        ${reim[cell].reimb_resolver}, ${reim[cell].reimb_status_id}, ${reim[cell].reimb_type_id}`
     }
-    tbody.appendChild(row);
+    userRow.appendChild(td);
+  }
+  userTable.appendChild(userRow);
+}
+
+async function getErsReim()
+{
+  let response = await fetch(URL + "ersreim", {credentials: "include"});
+
+  if(response.status === 200)
+  {
+    let reimbursements = await response.json();
+    showErsReim(reimbursements);
+  }
+  else
+  {
+    console.log("No reimbursements to show.");
   }
 }
 
-async function getHomes(){
-  let response = await fetch(URL+"homes", {credentials:"include"});
-  if(response.status===200){
-    let data = await response.json();
-    populateHomeTable(data);
-  }else{
-    console.log("Homes not available.");
-  }
-}
+function makeErsReim(reimbursements)
+{
+  let reimTable = document.getElementById("show-reim");
+  reimTable.innerHTML = "";
 
-function populateHomeTable(data){
-  let tbody = document.getElementById("homeBody");
-
-  tbody.innerHTML="";
-
-  for(let home of data){
-    let row = document.createElement("tr");
-    for(let cell in home){
+  for(let reim of reimbursements)
+  {
+    let reimRow = document.createElement("tr");
+    for(let cell in reim)
+    {
       let td = document.createElement("td");
-      td.innerText = home[cell];
-      row.appendChild(td);
+      td.innerText = `${reim[cell].reimb_id}: ${reim[cell].reimb_amount}, ${reim[cell].reimb_submitted}, ${reim[cell].reimb_resolved},
+                        ${reim[cell].reimb_description}, ${reim[cell].reimb_receipt}, ${reim[cell].reimb_author},
+                        ${reim[cell].reimb_resolver}, ${reim[cell].reimb_status_id}, ${reim[cell].reimb_type_id}`
     }
-    tbody.appendChild(row);
+    reimRow.appendChild(td);
   }
-}
-
-function getNewHome(){
-  let newName = document.getElementById("homeName").value;
-  let newStreetNum = document.getElementById("homeStreetNum").value; 
-  let newStreetName = document.getElementById("homeStreetName").value;
-  let newCity = document.getElementById("homeCity").value;
-  let newRegion = document.getElementById("homeRegion").value;
-  let newZip = document.getElementById("homeZip").value;
-  let newCounty = document.getElementById("homeCountry").value;
-
-  let home =  {
-    name:newName,
-    streetNumber:newStreetNum,
-    streetName:newStreetName,
-    city:newCity,
-    region:newRegion,
-    zip:newZip,
-    country:newCounty
-  }
-
-  return home;
-}
-
-async function addHome(){
-  let home = getNewHome();
-
-  let response = await fetch(URL+"homes", {
-    method:'POST',
-    body:JSON.stringify(home),
-    credentials:"include"
-  });
-
-  if(response.status===201){
-    console.log("Home created successfully.");
-  }else{
-    console.log("Something went wrong creating your home.")
-  }
-
+  reimTable.appendChild(reimRow);
 }

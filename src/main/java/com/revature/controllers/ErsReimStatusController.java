@@ -2,9 +2,7 @@ package com.revature.controllers;
 
 import java.util.List;
 
-import com.revature.models.ErsReim;
 import com.revature.models.ErsReimStatus;
-import com.revature.models.ErsReimType;
 import com.revature.services.ErsReimStatusService;
 
 import io.javalin.Javalin;

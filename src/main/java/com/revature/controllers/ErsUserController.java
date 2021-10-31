@@ -1,33 +1,119 @@
 package com.revature.controllers;
 
-import com.revature.models.ErsUsersDTO;
-import com.revature.services.ErsLoginService;
+import java.util.List;
 
+import com.revature.models.ErsUsers;
+import com.revature.services.ErsUsersService;
+
+import ch.qos.logback.core.joran.conditional.ElseAction;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
-public class ErsUserController implements Controller
+public class ErsUserController 
 {
-	private ErsLoginService ersLoginService = new ErsLoginService();
-	
-	private Handler ersLogin = (ctx) ->
+    private ErsUsersService ersUsersService = new ErsUsersService();
+
+    public Handler getAllUsers = (ctx) ->
+    {
+        if(ctx.req.getSession(false) != null)
+        {
+            List<ErsUsers> userList = ersUsersService.getAllUsers();
+
+            ctx.json(userList);
+            ctx.status(200);
+        }
+        else
+        {
+            ctx.status(401);
+        }
+    };
+
+    public Handler getUser = (ctx) ->
+    {
+        if(ctx.req.getSession(false) != null)
+        {
+            String param = ctx.pathParam("ErsUsers");
+            int paramToInt = Integer.parseInt(param);
+
+            ErsUsers ersUsers = ersUsersService.getUser(paramToInt);
+            ctx.json(ersUsers);
+            ctx.status(200);
+        }
+        else
+        {
+            ctx.status(401);
+        }
+    };
+
+	public Handler addUser = (ctx) ->
 	{
-		ErsUsersDTO ersUsersDTO = ctx.bodyAsClass(ErsUsersDTO.class);
-		
-		if (ersLoginService.ersLogin(ersUsersDTO))
+		if(ctx.req.getSession(false) != null)
 		{
-			ctx.req.getSession();
-			ctx.status(200);
+			ErsUsers ersUsers = ctx.bodyAsClass(ErsUsers.class);
+			
+			if(ersUsersService.addErsUser(ersUsers))
+			{
+				ctx.status(200);
+			}
+			else
+			{
+				ctx.status(400);
+			}
 		}
 		else
 		{
-			ctx.req.getSession().invalidate();
 			ctx.status(401);
 		}
 	};
 	
-	public void addRoutes(Javalin app)
+	public Handler updateUser = (ctx) ->
 	{
-		app.post("/login", this.ersLogin);
+		if(ctx.req.getSession(false) != null)
+		{
+			ErsUsers ersUsers = ctx.bodyAsClass(ErsUsers.class);
+			
+			if(ersUsersService.updateErsUser(ersUsers))
+			{
+				ctx.status(200);
+			}
+			else
+			{
+				ctx.status(400);
+			}
+		}
+		else
+		{
+			ctx.status(401);
+		}
+	};
+	
+	public Handler deleteUser = (ctx) ->
+	{
+		if(ctx.req.getSession(false) != null)
+		{
+			ErsUsers ersUsers = ctx.bodyAsClass(ErsUsers.class);
+			
+			if(ersUsersService.deleteErsUser(ersUsers))
+			{
+				ctx.status(200);
+			}
+			else
+			{
+				ctx.status(400);
+			}
+		}
+		else
+		{
+			ctx.status(401);
+		}
+	};
+
+	public void addRoutes(Javalin app) 
+	{
+		app.get("/ersusers", this.getAllUsers);
+		app.get("/ersusers/:ersusers", this.getUser);
+		app.post("/ersusers", this.addUser);
+		app.put("/ersusers", this.updateUser);
+		app.delete("/ersusers/:ersusers", this.deleteUser);
 	}
 }

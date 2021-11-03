@@ -16,7 +16,6 @@ import javax.persistence.Id;
 public class ErsUsers 
 { 
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int ers_users_id;
 	private String ers_username;
 	private int ers_password;
@@ -28,6 +27,16 @@ public class ErsUsers
 	public ErsUsers(int id, String name, int password, String firstName, String lastName, String email, int roleId)
 	{
 		this.ers_users_id = id;
+		this.ers_username = name;
+		this.ers_password = password;
+		this.user_first_name = firstName;
+		this.user_last_name = lastName;
+		this.user_email = email;
+		this.user_role_id = roleId;
+	}
+
+	public ErsUsers(String name, int password, String firstName, String lastName, String email, int roleId)
+	{
 		this.ers_username = name;
 		this.ers_password = password;
 		this.user_first_name = firstName;

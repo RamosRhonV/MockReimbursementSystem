@@ -7,7 +7,7 @@ async function loginToErs()
 {
   let ersUser = 
   {
-    username:document.getElementById("ID").value,
+    id:document.getElementById("id").value,
     password:document.getElementById("password").value
   }
 
@@ -20,51 +20,39 @@ async function loginToErs()
 
   if(ersResponse.status === 200)
   {
-    document.getElementById("show-reim")[0].innerHTML = '';
-    
+    showReim();
   }
   else
   {
     let ersFail = document.createElement("p");
     ersFail.setAttribute("style","color:red")
     ersFail.innerText = "User doesn't exist"
-    document.getElementById("show-reim")[0].appendChild(ersFail);
+    document.getElementById("login-error").appendChild(ersFail);
   }
 }
 
-async function getErsUser()
+function showReim()
 {
-  let response = await fetch(URL + "ersusers", {credentials: "include"});
+  let reimsP = document.createElement("p");
+  let pText = document.createTextNode("Requesting Reimbursement");
+  reimsP.appendChild(pText);
 
-  if(response.status === 200)
-  {
-    let users = await response.json();
-    makeErsUsers(user);
-  }
-  else
-  {
-    console.log("No users to show.");
-  }
-}
+  let reimsDiv = document.createElement("div");
 
-function makeErsUsers(users)
-{
-  let userTable = document.getElementById("show-users");
-  userTable.innerHTML = "";
+  let reimsLabel = document.createElement("label");
+  reimsLabel.setAttribute("for", "reim_amount");
+  reimsLabel.innerText = "$: ";
 
-  for(let user of users)
-  {
-    let userRow = document.createElement("tr");
-    for(let cell in user)
-    {
-      let td = document.createElement("td");
-      td.innerText = `${reim[cell].reimb_id}: ${reim[cell].reimb_amount}, ${reim[cell].reimb_submitted}, ${reim[cell].reimb_resolved},
-                        ${reim[cell].reimb_description}, ${reim[cell].reimb_receipt}, ${reim[cell].reimb_author},
-                        ${reim[cell].reimb_resolver}, ${reim[cell].reimb_status_id}, ${reim[cell].reimb_type_id}`
-    }
-    userRow.appendChild(td);
-  }
-  userTable.appendChild(userRow);
+  let reimInput = document.createElement("input");
+  reimInput.setAttribute("type", "text");
+  reimInput.setAttribute("id", "reimb_amount");
+  reimInput.setAttribute("name", "reimb_amount");
+
+  reimsDiv.appendChild(reimsLabel);
+  reimsDiv.appendChild(reimInput);
+
+  document.getElementsByClassName("reims")[0].appendChild(reimsP);
+  document.getElementsByClassName("reims")[0].appendChild(reimsDiv);
 }
 
 async function getErsReim()
@@ -82,7 +70,7 @@ async function getErsReim()
   }
 }
 
-function makeErsReim(reimbursements)
+function showErsReim(reimbursements)
 {
   let reimTable = document.getElementById("show-reim");
   reimTable.innerHTML = "";

@@ -6,3 +6,12 @@
     align-items: center;
     margin: 200px;
 }
+
+.reims
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 200px;
+}

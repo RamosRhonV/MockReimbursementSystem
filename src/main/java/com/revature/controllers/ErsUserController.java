@@ -5,11 +5,10 @@ import java.util.List;
 import com.revature.models.ErsUsers;
 import com.revature.services.ErsUsersService;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
-public class ErsUserController 
+public class ErsUserController implements Controller
 {
     private ErsUsersService ersUsersService = new ErsUsersService();
 

@@ -1,10 +1,10 @@
-package com.revature.services;
+package com.main_files.services;
 
 import java.util.List;
 
-import com.revature.models.ErsUsers;
-import com.revature.repos.ErsUsersDAO;
-import com.revature.repos.ErsUsersDAOImpl;
+import com.main_files.models.ErsUsers;
+import com.main_files.repos.ErsUsersDAO;
+import com.main_files.repos.ErsUsersDAOImpl;
 
 public class ErsUsersService 
 {

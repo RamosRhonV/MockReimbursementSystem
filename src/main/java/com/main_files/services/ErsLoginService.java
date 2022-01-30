@@ -1,8 +1,8 @@
-package com.revature.services;
+package com.main_files.services;
 
-import com.revature.models.ErsUsers;
-import com.revature.models.ErsUsersDTO;
-import com.revature.repos.ErsUsersDAOImpl;
+import com.main_files.models.ErsUsers;
+import com.main_files.models.ErsUsersDTO;
+import com.main_files.repos.ErsUsersDAOImpl;
 
 public class ErsLoginService 
 {

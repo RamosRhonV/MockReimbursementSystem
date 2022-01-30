@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.main_files.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;

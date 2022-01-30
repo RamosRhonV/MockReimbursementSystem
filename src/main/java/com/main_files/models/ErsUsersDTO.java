@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.main_files.models;
 
 public class ErsUsersDTO 
 {

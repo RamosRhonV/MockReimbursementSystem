@@ -1,7 +1,7 @@
-package com.revature.controllers;
+package com.main_files.controllers;
 
-import com.revature.models.ErsReim;
-import com.revature.services.ErsReimService;
+import com.main_files.models.ErsReim;
+import com.main_files.services.ErsReimService;
 
 import java.util.List;
 

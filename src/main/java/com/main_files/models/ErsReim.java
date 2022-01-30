@@ -1,4 +1,4 @@
-package com.revature.models;
+package com.main_files.models;
 
 import java.sql.Blob;
 import java.sql.Timestamp;

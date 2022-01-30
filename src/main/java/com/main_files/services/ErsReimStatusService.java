@@ -1,10 +1,10 @@
-package com.revature.services;
+package com.main_files.services;
 
 import java.util.List;
 
-import com.revature.models.ErsReimStatus;
-import com.revature.repos.ErsReimStatusDAO;
-import com.revature.repos.ErsReimStatusDAOImpl;
+import com.main_files.models.ErsReimStatus;
+import com.main_files.repos.ErsReimStatusDAO;
+import com.main_files.repos.ErsReimStatusDAOImpl;
 
 public class ErsReimStatusService 
 {

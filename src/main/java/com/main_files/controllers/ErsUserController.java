@@ -1,9 +1,9 @@
-package com.revature.controllers;
+package com.main_files.controllers;
 
 import java.util.List;
 
-import com.revature.models.ErsUsers;
-import com.revature.services.ErsUsersService;
+import com.main_files.models.ErsUsers;
+import com.main_files.services.ErsUsersService;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;

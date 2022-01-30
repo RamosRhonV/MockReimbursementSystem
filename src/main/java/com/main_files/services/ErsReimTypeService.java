@@ -1,10 +1,10 @@
-package com.revature.services;
+package com.main_files.services;
 
 import java.util.List;
 
-import com.revature.models.ErsReimType;
-import com.revature.repos.ErsReimTypeDAO;
-import com.revature.repos.ErsReimTypeDAOImpl;
+import com.main_files.models.ErsReimType;
+import com.main_files.repos.ErsReimTypeDAO;
+import com.main_files.repos.ErsReimTypeDAOImpl;
 
 public class ErsReimTypeService 
 {

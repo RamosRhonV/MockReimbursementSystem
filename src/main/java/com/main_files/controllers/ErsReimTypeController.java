@@ -1,9 +1,9 @@
-package com.revature.controllers;
+package com.main_files.controllers;
 
 import java.util.List;
 
-import com.revature.models.ErsReimType;
-import com.revature.services.ErsReimTypeService;
+import com.main_files.models.ErsReimType;
+import com.main_files.services.ErsReimTypeService;
 
 import io.javalin.Javalin;
 import io.javalin.http.Handler;

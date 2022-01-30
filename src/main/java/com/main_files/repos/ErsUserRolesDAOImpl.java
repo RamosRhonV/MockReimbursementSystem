@@ -1,4 +1,4 @@
-package com.revature.repos;
+package com.main_files.repos;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.models.ErsUserRoles;
-import com.revature.utils.HibernateUtil;
+import com.main_files.models.ErsUserRoles;
+import com.main_files.utils.HibernateUtil;
 
 public class ErsUserRolesDAOImpl implements ErsUserRolesDAO
 {

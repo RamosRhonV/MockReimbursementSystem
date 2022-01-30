@@ -1,8 +1,8 @@
-package com.revature.repos;
+package com.main_files.repos;
 
 import java.util.List;
 
-import com.revature.models.ErsReimType;
+import com.main_files.models.ErsReimType;
 
 public interface ErsReimTypeDAO 
 {

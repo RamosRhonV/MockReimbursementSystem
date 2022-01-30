@@ -1,4 +1,4 @@
-package com.revature.repos;
+package com.main_files.repos;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.models.ErsReim;
-import com.revature.utils.HibernateUtil;
+import com.main_files.models.ErsReim;
+import com.main_files.utils.HibernateUtil;
 
 public class ErsReimDAOImpl implements ErsReimDAO
 {
